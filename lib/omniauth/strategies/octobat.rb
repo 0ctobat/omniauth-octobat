@@ -22,7 +22,14 @@ module OmniAuth
       uid { raw_info[:octobat_account_id] }
 
       info do
-        { livemode: raw_info[:livemode] }
+        {
+          livemode: raw_info[:livemode],
+          scope: raw_info[:scope],
+          octobat_publishable_key: raw_info[:octobat_publishable_key],
+          :name => extra_info[:legal_name] || extra_info[:common_name] || extra_info[:email],
+          :email => extra_info[:email],
+          :nickname => extra_info[:common_name],
+        }
       end
 
       extra do
